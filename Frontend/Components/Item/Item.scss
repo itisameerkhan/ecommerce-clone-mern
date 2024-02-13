@@ -7,7 +7,8 @@ $primary-title: #3e4152;
     cursor: pointer;
     display: flex;
     flex-direction: column;
-    width: 320px;
+    // width: 320px;
+    max-width: 100%;
 
     .name 
     {
@@ -35,5 +36,12 @@ $primary-title: #3e4152;
         font-weight: 700;
         color: gray;
         text-decoration: line-through;
+    }
+}
+@media screen and (max-width:600px)
+{
+    .item
+    {
+        // max-width: 50%;
     }
 }
