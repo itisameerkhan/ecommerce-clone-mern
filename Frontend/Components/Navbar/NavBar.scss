@@ -15,6 +15,11 @@ $primary-color: #F41CB2;
     background-color: white;
     z-index: 9;
 }
+a 
+{
+    text-decoration: none;
+    color: black;
+}
 .nav-sec-1 
 {
     display: flex;
@@ -106,7 +111,7 @@ $primary-color: #F41CB2;
     {
         position: absolute;
         top: 0;
-        right: -0px;
+        right:0px;
         background-color: $primary-color;
         padding: 0rem 0.4rem;
         border-radius: 50%;
