@@ -1,0 +1,148 @@
+$primary-color: #F41CB2;
+
+.nav-bar 
+{
+    font-family: 'Assistant';
+    font-weight: 700;
+    color:black;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding:0rem 3rem;
+    position: fixed;
+    width: 100%;
+    box-shadow: 0 4px 12px 0 rgba(0,0,0,.09);
+    background-color: white;
+    z-index: 9;
+}
+.nav-sec-1 
+{
+    display: flex;
+    align-items: center;
+
+    img
+    {
+        height: 36px !important;
+        width: 53px !important;
+    }
+}
+.nav-sec-2 
+{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    button 
+    {
+        border: 2px solid #202020;
+        background-color: transparent;
+        font-family: 'Assistant';
+        padding: 0.5rem 1rem;
+        font-size: 1rem;
+        cursor: pointer;
+        font-weight: 700;
+        border-radius: 10px;
+        color: #202020;
+
+        &:active 
+        {
+            background-color: #bfbfbf;
+        }
+    }
+    span
+    {
+        cursor: pointer;
+        padding:0.5rem;
+
+        &:hover 
+        {
+            border-radius: 50%;
+            background-color: #dbdbdb;
+        }
+    }
+}
+.nav-bar-n 
+{
+    ul 
+    {
+        display: flex;
+        list-style-type: none;
+        gap: 2rem;
+        margin-left: 5rem;
+
+        li 
+        {
+            cursor: pointer;
+            height: 100%;
+            padding: 1.8rem 0.4rem;
+            border-bottom: 3px solid transparent;
+            transition: all 100ms ease-in-out;
+
+            &:hover 
+            {
+                border-bottom: 3px solid $primary-color;
+            }
+        }
+    }
+}
+.burger-menu-nav
+{
+    display: none;
+}
+.nav-height 
+{
+    height: 5rem;
+}
+.nav-sec-bag 
+{
+    position: relative;
+
+    span 
+    {
+        font-size: 2rem;
+    }
+
+    p 
+    {
+        position: absolute;
+        top: 0;
+        right: -0px;
+        background-color: $primary-color;
+        padding: 0rem 0.4rem;
+        border-radius: 50%;
+        color:white;
+    }
+}
+.active 
+{
+    border-bottom: 3px solid $primary-color !important;
+}
+@media screen and (max-width:700px) {
+    html 
+    {
+        font-size: 12px;
+    }
+}
+@media screen and (max-width:600px) {
+    .nav-bar-n 
+    {
+        position: absolute;
+        top:5rem;
+        left: 0;
+        display: flex;
+        justify-content: center;
+        padding: 0;
+        background-color: white;
+        width: 100%;
+
+        ul 
+        {
+            margin: 0;
+        }
+    }
+    .nav-bar
+    {
+        padding: 1.2rem 2rem !important;
+        position: relative;
+    }
+}
