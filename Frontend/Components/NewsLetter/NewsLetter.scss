@@ -1,0 +1,52 @@
+$primary-color: #f9c6e9;
+
+.news-letter 
+{
+    background: linear-gradient(to bottom, $primary-color, transparent, transparent, $primary-color);
+    padding: 2rem 5rem;
+    margin: 2rem 4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Assistant';
+    border-radius: 10px;
+    height: 20rem;    
+    p 
+    {
+        margin-top: -1rem;
+        margin-bottom: 2rem;
+        font-size: 1.1rem;
+    }
+
+    div 
+    {
+        // border:1px solid gray;
+        display: flex;
+    }
+
+    button 
+    {
+        height: 100%;
+        border-top-right-radius: 2rem;
+        border-bottom-right-radius: 2rem;
+        background-color: #202020;
+        color:white;
+        cursor: pointer;
+        padding: 0 0.7rem;
+        font-family: 'Assistant';
+        border: none;
+    }
+
+    input 
+    {
+        border:2px solid gray;
+        outline: none;
+        border-top-left-radius: 2rem;
+        border-bottom-left-radius: 2rem;
+        padding: 0.5rem 1rem;
+        width: 20rem;
+        font-family: 'Assistant';
+        font-size: 1rem;
+    }
+}

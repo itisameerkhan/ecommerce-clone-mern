@@ -9,6 +9,8 @@ $primary-title: #3e4152;
     flex-direction: column;
     // width: 320px;
     max-width: 100%;
+    // max-width: 300px;
+    position: relative;
 
     .name 
     {
@@ -19,6 +21,16 @@ $primary-title: #3e4152;
     {
         width: 100%;
         border-radius: 10px;
+    }
+
+    &:hover 
+    {
+        .hover-div
+        {
+            bottom: 4rem;
+            visibility: visible;
+            z-index: 1;
+        }
     }
 }
 .price 
@@ -38,10 +50,29 @@ $primary-title: #3e4152;
         text-decoration: line-through;
     }
 }
-@media screen and (max-width:600px)
+.hover-div 
 {
-    .item
+    position: absolute;
+    display: flex;
+    z-index: -1;
+    bottom: 3rem;
+    visibility: hidden;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    gap: 3rem;
+    background-color: white;
+    padding: 0.5rem 0;
+    transition: all 100ms ease-in-out;
+
+    span 
     {
-        // max-width: 50%;
+        padding: 0.5rem;
+        border-radius: 50%;
+
+        &:hover
+        {
+            background-color: rgb(183, 179, 179);
+        }
     }
 }
