@@ -1,0 +1,39 @@
+$primary-title: #3e4152;
+
+.item 
+{
+    color:black;
+    font-family: 'Assistant';
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    width: 320px;
+
+    .name 
+    {
+        font-weight: 600;
+    }
+
+    img 
+    {
+        width: 100%;
+        border-radius: 10px;
+    }
+}
+.price 
+{
+    display: flex;
+    gap: 10px;
+    margin: 0.2rem 0;
+
+    .new-price 
+    {
+        font-weight: bolder;
+    }
+    .old-price 
+    {
+        font-weight: 700;
+        color: gray;
+        text-decoration: line-through;
+    }
+}

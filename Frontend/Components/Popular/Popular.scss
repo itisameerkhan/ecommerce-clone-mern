@@ -1,0 +1,25 @@
+$primary-title: #3e4152;
+
+.popular
+{
+    font-family: 'Assistant';
+    color: $primary-title;
+    margin-top: 2rem;
+    padding: 1rem 2rem;
+
+    h1 
+    {
+        text-transform: uppercase;
+        letter-spacing:3px;
+    }
+}
+.popular-items 
+{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between ;
+    padding: 1rem 2rem;
+    gap: 1rem;
+}
