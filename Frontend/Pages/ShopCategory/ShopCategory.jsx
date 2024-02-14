@@ -15,7 +15,7 @@ const ShopCategory = (props) => {
         <div className="popular-items shop-category-list">
           {products.map((data, index) => {
             if(data.category === props.category) {
-              return <Item data={data} />
+              return <Item data={data} key={index} />
             }
           })}
         </div>

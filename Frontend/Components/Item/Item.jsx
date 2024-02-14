@@ -7,7 +7,7 @@ const Item = ({ data }) => {
 
   return (
     <div className="item">
-        <Link to={`/product/${id}`}>
+        <Link to={`/product/${id}`} onClick={window.scrollTo(0,0)}>
           <img src={image} alt="" />
           <p className="name">{name}</p>
           <div className="price">

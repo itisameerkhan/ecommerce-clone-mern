@@ -3,11 +3,11 @@ import './Product.scss';
 import { useSelector } from 'react-redux';
 import BreadCrums from '../../Components/BreadCrums/BreadCrums';
 import ProductDisplay from '../../Components/ProductDisplay/ProductDisplay';
+import RelatedProducts from '../../Components/RelatedProducts/RelatedProducts';
 
 const Product = () => {
 
   const products = useSelector((store) => store.product);
-  console.log(products);
   const productId = useParams().productId;
   const product = products.find((e) => e.id == productId);
 
@@ -15,6 +15,7 @@ const Product = () => {
     <div className="product">
         <BreadCrums product={product} />
         <ProductDisplay product={product} />
+        <RelatedProducts />
     </div>
   )
 }
