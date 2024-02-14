@@ -13,9 +13,9 @@ const Item = ({ data }) => {
           <p className="old-price">₹{old_price}</p>
         </div>
         <div className="hover-div">
-        <span class="material-symbols-outlined">favorite</span>
-        <span class="material-symbols-outlined">shopping_cart</span>
-        <span class="material-symbols-outlined">report</span>
+        <span className="material-symbols-outlined">favorite</span>
+        <span className="material-symbols-outlined">shopping_cart</span>
+        <span className="material-symbols-outlined">report</span>
         </div>
     </div>
   )
