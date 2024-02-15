@@ -8,6 +8,7 @@ const Cart = () => {
 
 
   const cartCount = useSelector(store => store.cart);
+  const cartTotal = useSelector(store => store.total.value);
 
   let val = 0;
   cartCount.map((data) => {
@@ -34,11 +35,30 @@ const Cart = () => {
             })}
         </table>
         <div className="cart-total">
-          <h1>Cart Total</h1>
-          <div>
-            <p>Subtotal</p>
+          <div className="cart-total-left">
+            <h1>Cart Total</h1>
+            <div>
+              <p>Subtotal</p>
+              <p>₹ {cartTotal}</p>
+            </div>
+            <div>
+              <p>Shipping Fee</p>
+              <p>Free</p>
+            </div>
+            <div>
+              <p>Total</p>
+              <p>₹ {cartTotal}</p>
+            </div>
+          </div>
+          <div className="cart-total-right">
+            <p>If you have a promo code, Enter it here</p>
+            <div>
+              <input type="text" placeholder='promo code' />
+              <button>SUBMIT</button>
+            </div>
           </div>
         </div>
+        <button className='proceed-btn'>proceed to checkout</button>
     </div>
   )
 }
