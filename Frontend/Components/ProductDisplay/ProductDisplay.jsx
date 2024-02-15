@@ -1,12 +1,14 @@
 import "./ProductDisplay.scss";
 import { useDispatch } from "react-redux";
 import { addItem } from "../../Context/cartSlice";
+import { addCount } from "../../Context/totalSlice";
 
 const ProductDisplay = ({ product }) => {
   const dispatch = useDispatch();
 
   const handleClick = () => {
     dispatch(addItem(product.id));
+    dispatch(addCount(1))
   };
 
   return (
