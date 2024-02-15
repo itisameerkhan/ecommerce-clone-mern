@@ -15,7 +15,7 @@ const cartSlice = createSlice({
             state[action.payload]++;
         },
         removeItem: (state, action) => {
-            state[action.payload] = 0;
+            state[action.payload]--;
         },
     }
 });

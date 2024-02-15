@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import CartItems from '../../Components/CartItems/CartItems';
 import Empty from '../../Components/Empty/Empty';
 import './Cart.scss';
@@ -32,6 +33,12 @@ const Cart = () => {
               }
             })}
         </table>
+        <div className="cart-total">
+          <h1>Cart Total</h1>
+          <div>
+            <p>Subtotal</p>
+          </div>
+        </div>
     </div>
   )
 }
