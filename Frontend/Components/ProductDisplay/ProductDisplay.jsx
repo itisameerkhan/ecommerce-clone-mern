@@ -1,5 +1,5 @@
 import "./ProductDisplay.scss";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { addItem } from "../../Context/cartSlice";
 
 const ProductDisplay = ({ product }) => {

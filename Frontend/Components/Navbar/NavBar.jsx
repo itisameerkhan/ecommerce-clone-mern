@@ -9,11 +9,13 @@ const NavBar = () => {
     <>
       <div className="nav-bar">
         <div className="nav-sec-1">
-          <img
-            src="https://logosarchive.com/wp-content/uploads/2021/12/Myntra-icon-logo.svg"
-            alt="logo"
-            className="logo"
-          />
+          <Link to={'/'}>
+            <img
+              src="https://logosarchive.com/wp-content/uploads/2021/12/Myntra-icon-logo.svg"
+              alt="logo"
+              className="logo"
+            />
+          </Link>
           <nav className="nav-bar-n">
             <ul>
               <Link to={"/"}>

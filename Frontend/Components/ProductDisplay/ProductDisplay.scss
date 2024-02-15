@@ -155,3 +155,26 @@ $primary-color: #FF3E6C;
         }
     }
 }
+@media screen and (max-width:800px){
+    .p-d-r-size 
+    {
+        div 
+        {
+            display: none;
+        }
+    }
+}
+@media screen and (max-width:550px) {
+    .product-display
+    {
+        flex-direction: column;
+    }
+    .product-display-left 
+    {
+        width: 100%;
+    }
+    .product-display-right
+    {
+        width: 100%;
+    }
+}

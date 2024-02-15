@@ -1,0 +1,28 @@
+$primary-color: #FF3E6C;
+
+.empty 
+{
+    display:grid;
+    place-items: center;
+    padding: 6.06rem 1rem;
+
+    img 
+    {
+        height: 150px;
+    }
+    p 
+    {
+        font-size: 1.8rem;
+        margin: 1rem 0;
+    }
+    button 
+    {
+        border:2px solid $primary-color;
+        padding: 0.5rem 1rem;
+        color: $primary-color;
+        font-family: 'Assistant';
+        font-size: 1rem;
+        font-weight: 700;
+        cursor: pointer;
+    }
+}
