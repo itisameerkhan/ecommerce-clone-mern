@@ -50,12 +50,16 @@ app.post("/upload", upload.single("product"), (req, res) => {
   });
 });
 
-app.post('/addProduct', async(req, res) => {
+app.post('/addproduct', async(req, res) => {
     
     let products = await Product.find({});
+    let lastProductId = 0;
+
+    if(products.length > 0) lastProductId = products[products.length-1].id;
+    
     
     const product = await Product.create({
-        id: products.length + 1,
+        id: ++lastProductId,
         name: req.body.name,
         image: req.body.image,
         category: req.body.category,
@@ -64,4 +68,20 @@ app.post('/addProduct', async(req, res) => {
     });
 
     res.json(product);
+});
+
+// Creating API for deleting products
+
+app.post('/removeproduct', async(req, res) => {
+    const product = await Product.findOneAndDelete({id: req.body.id});
+    res.json({message: 'success'});
+})
+
+// Creating API for getting all products
+
+app.get('/allproducts',async(req, res) => {
+
+    const products = await Product.find({});
+    res.status(200).json(products);
+
 });
