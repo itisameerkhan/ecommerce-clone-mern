@@ -64,3 +64,18 @@ $primary-color: #FF3E6C;
         background-color: #f91c50;
     }
 }
+.footer
+{
+    display: none;
+}
+@media screen and (max-width:400px) {
+    .login
+    {
+        height: 60vh;
+        // display: none;
+    }
+    .login-inner
+    {
+        width: 370px;
+    }
+}
