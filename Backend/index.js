@@ -9,8 +9,14 @@ import { Product } from "./model/product.js";
 
 const PORT = 8080;
 const app = express();
-app.use(cors());
 app.use(express.json());
+
+// Middleware for cors policy
+app.use(cors({
+  origin: 'http://localhost:5174',
+  methods: ['GET','POST','PUT','DELETE'],
+  allowedHeaders: ['Content-Type']
+}))
 
 // Mongo DB Connection
 mongoose.connect(DB_URL).then(() => {
