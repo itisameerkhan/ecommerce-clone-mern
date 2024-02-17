@@ -31,26 +31,42 @@ const AddProduct = () => {
     let formData = new FormData();
     formData.append("product", image);
 
-    // await fetch("http:localhost:5174/upload", {
-    //   method: "POST",
-    //   headers: {
-    //     Accept: "application/json",
-    //   },
-    //   body: formData,
-    // })
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     responseData = data;
-    //   });
-
-    await axios.post('http://localhost:8080/upload', {
-      body: formData
+    await fetch("http://localhost:8080/upload", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+      },
+      body: formData,
     })
-    .then((res) => responseData = res)
+      .then((res) => res.json())
+      .then((data) => {
+        responseData = data;
+      });
+
+    // await axios.post('http://localhost:8080/upload', {
+    //   body: formData
+    // })
+    // .then((res) => responseData = res)
 
     if (responseData.success) {
       product.image = responseData.image_url;
       console.log(product);
+      await fetch("http://localhost:8080/addproduct", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(product),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.success) {
+            alert("Product added");
+          } else {
+            alert("product add failed");
+          }
+        });
     }
   };
 

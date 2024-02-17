@@ -13,7 +13,7 @@ app.use(express.json());
 
 // Middleware for cors policy
 app.use(cors({
-  origin: 'http://localhost:5174',
+  origin: 'http://localhost:5173',
   methods: ['GET','POST','PUT','DELETE'],
   allowedHeaders: ['Content-Type']
 }))
@@ -73,7 +73,7 @@ app.post('/addproduct', async(req, res) => {
         old_price: req.body.old_price,
     });
 
-    res.json(product);
+    res.json({success: 1});
 });
 
 // Creating API for deleting products
