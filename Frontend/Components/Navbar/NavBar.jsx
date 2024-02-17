@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./NavBar.scss";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
+import aklogo from '../../public/ak.svg';
 
 const NavBar = () => {
   const [menu, setMenu] = useState("shop");
@@ -13,7 +14,7 @@ const NavBar = () => {
         <div className="nav-sec-1">
           <Link to={'/'}>
             <img
-              src="https://logosarchive.com/wp-content/uploads/2021/12/Myntra-icon-logo.svg"
+              src={aklogo}
               alt="logo"
               className="logo"
             />
