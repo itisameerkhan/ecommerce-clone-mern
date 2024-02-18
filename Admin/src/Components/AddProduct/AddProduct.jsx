@@ -1,6 +1,5 @@
 import { useState } from "react";
 import "./AddProduct.scss";
-import axios from "axios";
 
 const AddProduct = () => {
   const [image, setImage] = useState(false);
