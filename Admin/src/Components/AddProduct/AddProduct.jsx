@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./AddProduct.scss";
-
+  
 const AddProduct = () => {
   const [image, setImage] = useState(false);
 

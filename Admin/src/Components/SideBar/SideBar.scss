@@ -4,9 +4,15 @@
     flex-direction: column;
     max-width: 17rem;
     padding: 1rem 2rem;
-    height: 41rem;
+    height: 41.5rem;
     gap: 1.5rem;
     background-color: #252525;
+    position: fixed;
+    top: 4.5rem;
+}
+.side-bar-temp 
+{
+    width: 17rem;
 }
 .sidebar-item 
 {
