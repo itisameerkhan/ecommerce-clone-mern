@@ -24,6 +24,7 @@ $primary-color: #FF3E6C;
 {
     font-weight: 700;
     font-size: 1.1rem;
+    margin-bottom: 0.7rem;
 }
 .input-fields 
 {
@@ -67,6 +68,19 @@ $primary-color: #FF3E6C;
 .footer
 {
     display: none;
+}
+.already-account 
+{
+    margin: 0.3rem 0;
+    p 
+    {
+        color:black;
+    }
+    span 
+    {
+        color:$primary-color;
+        cursor: pointer;
+    }
 }
 @media screen and (max-width:400px) {
     .login
