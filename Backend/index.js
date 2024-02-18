@@ -6,17 +6,20 @@ import path from "path";
 import cors from "cors";
 import { DB_URL } from "./utils/constants.js";
 import { Product } from "./model/product.js";
+import { Users } from "./model/users.js";
 
 const PORT = 8080;
 const app = express();
 app.use(express.json());
 
 // Middleware for cors policy
-app.use(cors({
-  origin: 'http://localhost:5173',
-  methods: ['GET','POST','PUT','DELETE'],
-  allowedHeaders: ['Content-Type']
-}))
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type"],
+  })
+);
 
 // Mongo DB Connection
 mongoose.connect(DB_URL).then(() => {
@@ -56,38 +59,68 @@ app.post("/upload", upload.single("product"), (req, res) => {
   });
 });
 
-app.post('/addproduct', async(req, res) => {
-    
-    let products = await Product.find({});
-    let lastProductId = 0;
+app.post("/addproduct", async (req, res) => {
+  let products = await Product.find({});
+  let lastProductId = 0;
 
-    if(products.length > 0) lastProductId = products[products.length-1].id;
-    
-    
-    const product = await Product.create({
-        id: ++lastProductId,
-        name: req.body.name,
-        image: req.body.image,
-        category: req.body.category,
-        new_price: req.body.new_price,
-        old_price: req.body.old_price,
-    });
+  if (products.length > 0) lastProductId = products[products.length - 1].id;
 
-    res.json({success: 1});
+  const product = await Product.create({
+    id: ++lastProductId,
+    name: req.body.name,
+    image: req.body.image,
+    category: req.body.category,
+    new_price: req.body.new_price,
+    old_price: req.body.old_price,
+  });
+
+  res.json({ success: 1 });
 });
 
 // Creating API for deleting products
 
-app.post('/removeproduct', async(req, res) => {
-    const product = await Product.findOneAndDelete({id: req.body.id});
-    res.json({message: 'success'});
-})
+app.post("/removeproduct", async (req, res) => {
+  const product = await Product.findOneAndDelete({ id: req.body.id });
+  res.json({ message: "success" });
+});
 
 // Creating API for getting all products
 
-app.get('/allproducts',async(req, res) => {
+app.get("/allproducts", async (req, res) => {
+  const products = await Product.find({});
+  res.status(200).json(products);
+});
 
-    const products = await Product.find({});
-    res.status(200).json(products);
+// Creating Endpoint for registering user
+app.post("/signup", async (req, res) => {
+  const check = await Users.findOne({ email: req.email });
+  if (check) {
+    return res
+      .status(400)
+      .json({
+        success: false,
+        errors: "existing user found with same email address",
+      });
+  }
+  let cart = {};
+  for (let i = 0; i < 300; i++) {
+    cart[i] = 0;
+  }
+  const user = new Users({
+    name: req.body.username,
+    email: req.body.email,
+    password: req.body.password,
+    cartData: cart,
+  });
 
+  await user.save();
+
+  const data = {
+    user: {
+      id: user.id,
+    },
+  };
+
+  const token = jwt.sign(data, "secret_ecom");
+  res.json({ success: true, token });
 });
