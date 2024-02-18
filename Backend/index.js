@@ -95,12 +95,10 @@ app.get("/allproducts", async (req, res) => {
 app.post("/signup", async (req, res) => {
   const check = await Users.findOne({ email: req.email });
   if (check) {
-    return res
-      .status(400)
-      .json({
-        success: false,
-        errors: "existing user found with same email address",
-      });
+    return res.status(400).json({
+      success: false,
+      errors: "existing user found with same email address",
+    });
   }
   let cart = {};
   for (let i = 0; i < 300; i++) {
@@ -123,4 +121,25 @@ app.post("/signup", async (req, res) => {
 
   const token = jwt.sign(data, "secret_ecom");
   res.json({ success: true, token });
+});
+
+// Creating Endpoint for user login
+app.post("/login", async (req, res) => {
+  const user = await Users.findOne({ email: req.body.email });
+  if (user) {
+    const passCompare = req.body.password === user.password;
+    if (passCompare) {
+      const data = {
+        user: {
+          id: user.id,
+        },
+      };
+      const token = jwt.sign(data, "secret_ecom");
+      res.json({ succes: true, token });
+    } else {
+      res.status(400).json({ success: false, errors: "Wrong Password" });
+    }
+  } else {
+    res.status(400).json({success: false, errors: 'email address not fount 404!'})
+  }
 });
