@@ -27,7 +27,7 @@ const NavBar = () => {
   const handleLogout = () => {
     dispatch(removeToken());
     navigate('/login');
-  }
+  };
 
   return (
     <>

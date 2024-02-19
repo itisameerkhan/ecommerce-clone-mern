@@ -15,9 +15,9 @@ app.use(express.json());
 // Middleware for cors policy
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: "*",
     methods: ["GET", "POST", "PUT", "DELETE"],
-    allowedHeaders: ["Content-Type"],
+    allowedHeaders: ["Content-Type", "auth-token"],
   })
 );
 
@@ -152,3 +152,27 @@ app.post("/login", async (req, res) => {
       .json({ success: false, errors: "email address not fount 404!" });
   }
 });
+
+// Creating Endpoint for new collection data
+app.get('/newcollections', async(req, res) => {
+  const products = await Product.find({});
+  const newCollections = products.slice(1).slice(-8);
+  res.json(newCollections);
+});
+
+// Creating Endpoint for popular in women
+app.get('/popularinwomen', async(req, res) => {
+  const products = await Product.find({category: "women"});
+  const popularInWomen = products.slice(0,4);
+  res.json(popularInWomen);
+});
+
+//Creating Endpoint for Adding products cartData
+app.post('/addtocart', async(req, res) => {
+  console.log(req.body);
+});
+
+// Creating middleware for fetching user
+const fetchUser = async(req, res, next) => {
+
+}

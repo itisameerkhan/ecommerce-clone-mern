@@ -3,7 +3,7 @@ import all_product from "../Components/assets/all_product";
 
 let cartItems = [];
 
-for(let i=0;i<all_product.length;i++) {
+for(let i=0;i<300;i++) {
     cartItems[i] = 0;
 }
 
