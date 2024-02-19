@@ -12,7 +12,6 @@ const CartItems = ({ data, count }) => {
 
   const updateCartDB = async () => {
     if (authToken) {
-      console.log("inside function");
       const response = await fetch("http://localhost:8080/addtocart", {
         method: "POST",
         headers: {
@@ -20,11 +19,9 @@ const CartItems = ({ data, count }) => {
           "auth-token": authToken,
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(cartItems)
+        body: JSON.stringify(cartItems),
       });
       const json = await response.json();
-      console.log(json);
-      console.log("function executed");
     }
   };
 

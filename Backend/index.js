@@ -154,27 +154,47 @@ app.post("/login", async (req, res) => {
 });
 
 // Creating Endpoint for new collection data
-app.get('/newcollections', async(req, res) => {
+app.get("/newcollections", async (req, res) => {
   const products = await Product.find({});
   const newCollections = products.slice(1).slice(-8);
   res.json(newCollections);
 });
 
 // Creating Endpoint for popular in women
-app.get('/popularinwomen', async(req, res) => {
-  const products = await Product.find({category: "women"});
-  const popularInWomen = products.slice(0,4);
+app.get("/popularinwomen", async (req, res) => {
+  const products = await Product.find({ category: "women" });
+  const popularInWomen = products.slice(0, 4);
   res.json(popularInWomen);
-});
-
-//Creating Endpoint for Adding products cartData
-app.post('/addtocart', (req, res) => {
-  console.log(req.body);
-  res.json(req.body);
 });
 
 
 // Creating middleware for fetching user
-const fetchUser = async(req, res, next) => {
+const fetchUser = async (req, res, next) => {
+  const token = req.header("auth-token");
+  if(!token) {
+    res.status(401).json({errors: "Please Authenticate using valid token"});
+  } else {
+    try {
+      const data = jwt.verify(token, "secret_ecom");
+      req.user = data.user;
+      next();
+    } catch(err) {
+      res.status(401).send(err);
+      // console.log(err);
+      // res.status(401).send({errors: "Please authenticate using valid token"});
+    }
+  }
+};
 
-}
+//Creating Endpoint for Adding products cartData
+app.post("/addtocart", fetchUser, async(req, res) => {
+  const user = await Users.findOne({_id: req.user.id});
+  let cart = {};
+  for(let i=0;i<300;i++) {
+    cart[i] = req.body[i];
+  }
+  console.log(cart);
+  const data = await Users.findOneAndUpdate({_id: req.user.id}, {cartData: cart});
+  console.log(data);
+  res.json({success: true});
+});
