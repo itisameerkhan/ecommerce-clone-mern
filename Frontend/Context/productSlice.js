@@ -3,7 +3,7 @@ import all_product from "../Components/assets/all_product";
 
 const productSlice = createSlice({
     name: 'product',
-    initialState: all_product,
+    initialState: [],
     reducers: {
         addProducts: (state, action) => {
             return action.payload

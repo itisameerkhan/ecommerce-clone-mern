@@ -32,7 +32,6 @@ const Login = () => {
     if (responseData.success) {
       dispatch(addToken(responseData.token));
       navigate("/");
-      console.log('token added successfully');
     } else {
       // alert(responseData.errors);
       const notify = () => toast(responseData.errors);

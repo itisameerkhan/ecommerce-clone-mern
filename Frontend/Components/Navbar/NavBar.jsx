@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./NavBar.scss";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import aklogo from '../../public/ak.svg';
 import { removeToken } from "../../Context/authTokenSlice";
+import { addProducts } from "../../Context/productSlice";
 
 const NavBar = () => {
   const [menu, setMenu] = useState("shop");
@@ -11,6 +12,17 @@ const NavBar = () => {
   const authToken = useSelector(store => store.authToken.tokenId);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const getData = async() => {
+    const data = await fetch('http://localhost:8080/allproducts');
+    const json = await data.json();
+    dispatch(addProducts(json));
+  };
+
+  useEffect(() => {
+    getData();
+  },[]);
+
 
   const handleLogout = () => {
     dispatch(removeToken());
