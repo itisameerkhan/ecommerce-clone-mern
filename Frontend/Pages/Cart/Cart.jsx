@@ -6,26 +6,6 @@ import { useSelector } from "react-redux";
 const Cart = () => {
   const cartCount = useSelector((store) => store.cart);
   const cartTotal = useSelector((store) => store.total.value);
-  const authToken = useSelector(store => store.authToken.tokenId);
-
-
-  const updateCartDB = async() => {
-    if(authToken) {
-      console.log('inside function');
-      const response = await fetch('http://localhost:8080/addtocart', {
-        method: 'POST',
-        headers: {
-          Accept: 'application/form-data',
-          // "auth-token": authToken,
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(cartCount),
-      });
-      const json = await response.json();
-      console.log(json);
-      console.log('function executed');
-    }
-  }
 
   return (
     <div className="cart">
@@ -40,8 +20,6 @@ const Cart = () => {
         </tr>
         {cartCount.map((data, index) => {
           if (data > 0) {
-            console.log(index);
-            updateCartDB();
             return <CartItems data={index} count={data} key={index} />;
           }
         })}

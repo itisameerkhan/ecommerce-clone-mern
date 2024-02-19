@@ -168,9 +168,11 @@ app.get('/popularinwomen', async(req, res) => {
 });
 
 //Creating Endpoint for Adding products cartData
-app.post('/addtocart', async(req, res) => {
+app.post('/addtocart', (req, res) => {
   console.log(req.body);
+  res.json(req.body);
 });
+
 
 // Creating middleware for fetching user
 const fetchUser = async(req, res, next) => {
