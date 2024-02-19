@@ -111,7 +111,14 @@ app.post("/signup", async (req, res) => {
     cartData: cart,
   });
 
-  await user.save();
+  try {
+    await user.save();
+  } catch (err) {
+    return res.status(400).json({
+      success: false,
+      errors: "existing user found with same email address",
+    });
+  }
 
   const data = {
     user: {
@@ -135,11 +142,13 @@ app.post("/login", async (req, res) => {
         },
       };
       const token = jwt.sign(data, "secret_ecom");
-      res.json({ succes: true, token });
+      res.json({ success: true, token });
     } else {
       res.status(400).json({ success: false, errors: "Wrong Password" });
     }
   } else {
-    res.status(400).json({success: false, errors: 'email address not fount 404!'})
+    res
+      .status(400)
+      .json({ success: false, errors: "email address not fount 404!" });
   }
 });

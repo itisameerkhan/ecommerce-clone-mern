@@ -1,6 +1,10 @@
 import { useState } from "react";
 import "./Login.scss";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useDispatch } from "react-redux";
+import { addToken } from "../../Context/authTokenSlice";
 
 const Login = () => {
   const [state, setState] = useState("Login");
@@ -11,28 +15,50 @@ const Login = () => {
   });
 
   const navigate = useNavigate();
-   
+  const dispatch = useDispatch();
 
   const login = async () => {
-    
+    let responseData = await fetch("http://localhost:8080/login", {
+      method: "POST",
+      headers: {
+        Accept: "application/form-data",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    });
+
+    const json = await responseData.json();
+    responseData = json;
+    if (responseData.success) {
+      dispatch(addToken(responseData.token));
+      navigate("/");
+      console.log('token added successfully');
+    } else {
+      // alert(responseData.errors);
+      const notify = () => toast(responseData.errors);
+      notify();
+    }
   };
 
   const signup = async () => {
-    let responseData = await fetch('http://localhost:8080/signup', {
-      method: 'POST',
+    let responseData = await fetch("http://localhost:8080/signup", {
+      method: "POST",
       headers: {
-        Accept: 'application/form-data',
-        'Content-Type': 'application/json',
+        Accept: "application/form-data",
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(formData),
-    })
+    });
+
     const json = await responseData.json();
     responseData = json;
-    if(responseData.success) {
-      localStorage.setItem('auth-token', responseData.token);
+    if (responseData.success) {
+      dispatch(addToken(responseData.token));
       navigate("/");
     } else {
-      alert(responseData.errors)
+      // alert(responseData.errors);
+      const notify = () => toast(responseData.errors);
+      notify();
     }
   };
 
@@ -61,8 +87,8 @@ const Login = () => {
             value={formData.email}
             onChange={changeHandler}
           />
-          <input 
-            type="password" 
+          <input
+            type="password"
             placeholder="Password"
             name="password"
             value={formData.password}
@@ -75,7 +101,7 @@ const Login = () => {
             state === "Login" ? login() : signup();
           }}
         >
-          Login
+          {state}
         </button>
         <div className="already-account">
           {state === "Signup" && (
@@ -92,6 +118,18 @@ const Login = () => {
           )}
         </div>
       </div>
+      <ToastContainer
+        position="bottom-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </div>
   );
 };

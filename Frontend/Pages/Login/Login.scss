@@ -82,6 +82,10 @@ $primary-color: #FF3E6C;
         cursor: pointer;
     }
 }
+.Toastify 
+{
+    position: absolute;
+}
 @media screen and (max-width:400px) {
     .login
     {
