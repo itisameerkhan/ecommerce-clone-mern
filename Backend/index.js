@@ -195,6 +195,14 @@ app.post("/addtocart", fetchUser, async(req, res) => {
   }
   console.log(cart);
   const data = await Users.findOneAndUpdate({_id: req.user.id}, {cartData: cart});
-  console.log(data);
+  // console.log(data);
   res.json({success: true});
+});
+
+
+// Creating endpoint for get cart data 
+app.get('/getcart', fetchUser, async(req, res) => {
+  console.log('get cart');
+  const user = await Users.findOne({_id: req.user.id});
+  res.json(user.cartData);
 });

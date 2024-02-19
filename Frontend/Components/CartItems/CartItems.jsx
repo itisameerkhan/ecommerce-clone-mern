@@ -12,6 +12,7 @@ const CartItems = ({ data, count }) => {
 
   const updateCartDB = async () => {
     if (authToken) {
+      console.log('insider cart functionb');
       const response = await fetch("http://localhost:8080/addtocart", {
         method: "POST",
         headers: {
@@ -22,6 +23,8 @@ const CartItems = ({ data, count }) => {
         body: JSON.stringify(cartItems),
       });
       const json = await response.json();
+      console.log(json);
+      console.log('insider cart functionb executed');
     }
   };
 
@@ -35,6 +38,7 @@ const CartItems = ({ data, count }) => {
     dispatch(removeItem(data));
     dispatch(removeTotal(product.new_price));
     dispatch(removeCount(1));
+    updateCartDB();
   };
 
   useEffect(() => {
