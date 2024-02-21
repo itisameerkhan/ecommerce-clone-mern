@@ -85,7 +85,6 @@ app.post("/removeproduct", async (req, res) => {
 });
 
 // Creating API for getting all products
-
 app.get("/allproducts", async (req, res) => {
   const products = await Product.find({});
   res.status(200).json(products);
